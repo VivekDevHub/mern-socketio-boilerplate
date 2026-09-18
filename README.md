@@ -125,3 +125,46 @@ The `/socket` page is presentational only. Its rooms, messages, connection indic
 ## Environment Safety
 
 Do not commit `.env` files or real credentials. Keep secrets local and use different values for development and production.
+
+# notes
+hamko aisa connection chahiye jo continously open rahe , jise client or server jab chahe tab baat kar sake 
+
+WebSocket : connection remains open, jab chaho tab baat karo
+
+socketio ek communication library hai jo bani hai websocket ke uppar yeh extra feature deta hai events jaise , low latency, bidirectional
+
+npm install socket.io
+
+http server express deta hai isme socketio server ka use karte hai
+ 
+const { Server } = require("socket.io");
+const http = require('http');
+
+const server = http.createServer(app)
+const io = new Server(server);   //http ka server isme dalenge
+
+create folder socket
+inside folder create file socket.js jisme server initialise hoga
+
+const initializeServer = (io) => {
+  io.on("connection", (socket) => {
+    console.log("user is connected : ", socket.id);
+
+    socket.on("disconnect", () => {
+      console.log("user is connected : ", socket.id);
+    });
+  });
+};
+module.exports = {initializeServer}
+
+io = server jo hamne create kiya socketio server
+
+on = listen event or emitting event hai, jab aap is event par aaoge tabhi chalega
+
+"connection" = event name
+
+socket is object jo deta hai socketio, us connection ka data 
+
+socket wale server se project se run karna 
+
+
