@@ -1,4 +1,3 @@
-
 const initializeServer = (io) => {
   io.on("connection", (socket) => {
     console.log("user is connected : ", socket.id);
@@ -9,4 +8,4 @@ const initializeServer = (io) => {
   });
 };
 
-module.exports = {initializeServer}
+module.exports = { initializeServer };
